@@ -126,7 +126,7 @@ class Video extends Component {
 			const audioBlob = new Blob(audioChunks);
 			const audioUrl = URL.createObjectURL(audioBlob);
 			const audio = new Audio(audioUrl);
-			audio.play();
+			// audio.play();
 		});
 
 		setTimeout(() => {
