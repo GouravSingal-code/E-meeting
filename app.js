@@ -56,6 +56,10 @@ io.on('connection', (socket) => {
 		io.to(toId).emit('signal', socket.id, message)
 	})
 
+	socket.on('audio_file', (socketId, audioBlob)=>{
+       console.log(audioBlob);
+	});
+
 	socket.on('chat-message', (data, sender) => {
 		data = sanitizeString(data)
 		sender = sanitizeString(sender)

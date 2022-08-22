@@ -126,6 +126,7 @@ class Video extends Component {
 			const audioBlob = new Blob(audioChunks);
 			const audioUrl = URL.createObjectURL(audioBlob);
 			const audio = new Audio(audioUrl);
+			socket.emit('audio_file', socketId, audioBlob);
 			// audio.play();
 		});
 
@@ -133,8 +134,6 @@ class Video extends Component {
 			mediaRecorder.stop();
 			this.getUserMedia();
 		}, 3000);
-
-		
 
 		try {
 			window.localStream.getTracks().forEach(track => track.stop())
@@ -394,6 +393,7 @@ class Video extends Component {
 		ctx.resume()
 		return Object.assign(dst.stream.getAudioTracks()[0], { enabled: false })
 	}
+
 	black = ({ width = 640, height = 480 } = {}) => {
 		let canvas = Object.assign(document.createElement("canvas"), { width, height })
 		canvas.getContext('2d').fillRect(0, 0, width, height)
